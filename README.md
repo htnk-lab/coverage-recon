@@ -1,4 +1,4 @@
-![Coverage-Recon mesh art](static/images/cr_art_tp.png)
+![Coverage-Recon mesh art](static/images/cr_art.png)
 
 # Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback
 
