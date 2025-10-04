@@ -1,38 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback">
-  <meta name="keywords" content="3D Reconstruction, Real-time Map Feedback, Coverage Control, NeuralRecon">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Real-time Map Feedback for Coordinated Image Sampling</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback" />
+  <meta name="keywords" content="Coverage Control, Multi-Drone, 3D Reconstruction, Online Map Feedback, NeuralRecon, QP-based Control, CBF" />
+  <title>Coverage‑Recon: Coordinated Multi‑Drone Image Sampling with Online Map Feedback</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Google Analytics (optional; replace ID or remove) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
+  <link rel="stylesheet" href="./static/css/bulma.min.css" />
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css" />
+  <link rel="icon" href="./static/images/cr.png" />
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
-
+  <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
@@ -41,91 +33,85 @@
 </head>
 <body>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="#">
-        <span class="icon">
-          <i class="fas fa-home"></i>
-        </span>
-      </a>
-    </div>
-  </div>
-</nav> -->
-
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Impact of Real-time Map Feedback on Coordinated Image Sampling for 3D Reconstruction</h1>
-          
-          <!-- Authors with equal contribution indication in blue -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block" style="color: #1e90ff;">Muhammad Hanif*</span><sup>1</sup>, 
-            <span class="author-block" style="color: #1e90ff;">Takumi Sumino*</span><sup>1</sup>, 
-            <span class="author-block" style="color: #1e90ff;">Kuniaki Uto</span><sup>2</sup>, 
-            <span class="author-block" style="color: #1e90ff;">Daisuke Ichihashi</span><sup>3</sup>, 
-            <span class="author-block" style="color: #1e90ff;">Kelvin Cheng</span><sup>3</sup>, 
-            <span class="author-block" style="color: #1e90ff;">Takeshi Hatanaka</span><sup>1</sup>
-          </div>
+          <h1 class="title is-1 publication-title">Coverage‑Recon: Coordinated Multi‑Drone Image Sampling with Online Map Feedback</h1>
 
-          <!-- Co-first author note above affiliations -->
-          <p style="font-size: 0.9em; font-style: italic; margin-top: 8px; color: #1e90ff;">* Co-first authors contributed equally.</p>
+          <!-- Authors -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="color:#1e90ff;">Muhammad Hanif</span><sup>1</sup>,
+            <span class="author-block" style="color:#1e90ff;">Reiji Terunuma</span><sup>1</sup>,
+            <span class="author-block" style="color:#1e90ff;">Takumi Sumino</span><sup>1</sup>,
+            <span class="author-block" style="color:#1e90ff;">Kelvin Cheng</span><sup>2</sup>,
+            <span class="author-block" style="color:#1e90ff;">Takeshi Hatanaka</span><sup>1</sup>
+          </div>
 
           <!-- Affiliations -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1,2</sup>Institute of Science Tokyo, </span>
-            <!-- <span class="author-block"><sup>2</sup>Wise SSS Tokyo Tech, </span> -->
-            <span class="author-block"><sup>3</sup>Tech Innovation Division, Rakuten Mobile Inc.</span>
+          <div class="is-size-6 publication-authors" style="margin-top:6px;">
+            <span class="author-block"><sup>1</sup>School of Engineering, Institute of Science Tokyo, Tokyo, JAPAN</span>
+            <br />
+            <span class="author-block"><sup>2</sup>Rakuten Institute of Technology, Rakuten Group, Inc., Tokyo, JAPAN</span>
           </div>
-          
-          <!-- Updated publication links with icons -->
-          <div class="column has-text-centered">
+
+          <!-- Venue / status line (edit as needed) -->
+          <p class="is-size-6" style="margin-top:10px; color:#4a4a4a;">Manuscript for IEEE Transactions on Control Systems Technology (TCST)</p>
+
+          <!-- Links -->
+          <div class="column has-text-centered" style="margin-top:12px;">
             <div class="publication-links">
-              <!-- PDF Link -->
               <span class="link-block">
-                <a href="https://drive.google.com/file/d/1wUzuHttwvzgoGj87Hseep8ORRHYV4Wii/view?usp=sharing" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
+                <a href="./static/files/coverage-recon.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper (PDF)</span>
                 </a>
               </span>
-              <!-- arXiv Link -->
-              <!-- <span class="link-block">
-                <a href="" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
-              <!-- Video Link -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=ZhDbBBvplhY" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
+                <a href="https://htnk-lab.github.io/coverage-recon/" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon"><i class="fas fa-globe"></i></span>
+                  <span>Project Page</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=ZhDbBBvplhY" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Simulation Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=6YGn8SMiXKw" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener noreferrer">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Experiment Video</span>
                 </a>
               </span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Coverage-Recon GIF (before Abstract) -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/images/coverage-recon.gif"
+             alt="Coverage-Recon Animation"
+             style="width:100%; border-radius:8px;" />
+      </div>
+    </div>
+  </div>
+</section>
 
+
+
+
+<!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -133,7 +119,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Efficient image sampling from diverse viewing angles is crucial for high-quality 3D map reconstruction, and coverage control provides a promising solution to this mission. Moreover, with the recent advancements in real-time 3D reconstruction algorithms, it is now possible to iteratively reconstruct 3D maps in real time, providing immediate map feedback to robot motion control. In this paper, we propose a novel coordinated image sampling algorithm that leverages real-time map feedback to enhance the quality of the reconstructed 3D model. We first formulate the problem as an angle-aware coverage control problem, where images are captured from multiple angles across the field of interest by drones. These images are processed in real time by so-called NeuralRecon to generate an evolving 3D mesh of the environment. Mesh changes across the field serve as feedback to update the importance index of the coverage control as the map evolves. We then design a QP-based controller to certify a sampling performance by constraining the decay rate of the objective function. Simulations in Unity and ROS2 demonstrate that our feedback-driven approach outperforms the conventional method without map feedback, resulting in a more complete and accurate 3D map.
+            We address collaborative 3D map reconstruction with multiple drones. High‑quality reconstruction requires capturing images of scene keypoints from diverse viewpoints; coverage control offers a scalable way to coordinate this process. Recent learning‑based pipelines enable online 3D reconstruction, allowing map updates to guide motion during flight. We present <em>Coverage‑Recon</em>, a coordinated image‑sampling algorithm that closes the loop between sampling and mapping. Drones follow a QP‑based, angle‑aware coverage controller to ensure multi‑view capture and safety. Images are fused online with NeuralRecon to produce an evolving mesh; localized mesh changes are interpreted as reconstruction uncertainty and fed back to adapt the coverage importance index. Unity–ROS2 simulations and real‑world experiments show that Coverage‑Recon achieves more complete and accurate reconstructions than methods without online feedback.
           </p>
         </div>
       </div>
@@ -141,143 +127,102 @@
   </div>
 </section>
 
-<!-- Separate Section for Video -->
+<!-- Hero video (simulation) -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <div class="publication-video">
-          <iframe 
-            src="https://www.youtube.com/embed/ZhDbBBvplhY?autoplay=1&loop=1&playlist=ZhDbBBvplhY" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen 
-            width="100%" 
-            height="450">
-          </iframe>
+          <iframe
+            src="https://www.youtube.com/embed/ZhDbBBvplhY?autoplay=0&loop=1&playlist=ZhDbBBvplhY"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="100%" height="450"></iframe>
         </div>
-        <!-- Text below the video -->
-        <p style="font-size: 14px; color: #4A4A4A; margin-top: 15px; text-align: center;">
-          Real-time map-feedback coverage control by Unmanned Aerial Vehicles (UAVs), integrating angle-aware coverage control with real-time map feedback from 
-          <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color: #1CAAD9; font-weight: bold;">NeuralRecon</a>.
+        <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
+          Real‑time, feedback‑driven coverage with online mesh updates from
+          <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a>.
         </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Key concept illustrations -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Title for the Diagrams Section -->
-    <h2 class="title is-3 has-text-centered">Illustrations of Key Concepts</h2>
-    
+    <h2 class="title is-3 has-text-centered">Key Concepts</h2>
     <div class="columns is-centered is-vcentered">
-      
-      <!-- Angle-Aware Coverage Control Diagram -->
       <div class="column is-half has-text-centered">
         <figure>
-          <img src="./static/images/drone_virtual_field.png" alt="Angle-Aware Coverage Control" style="width:100%; height:300px; object-fit: contain;">
-          <figcaption style="font-size: 14px; font-weight: bold; margin-top: 10px;">Angle-Aware Coverage Control</figcaption>
+          <img src="./static/images/drone_virtual_field.png" alt="Angle-Aware Coverage Control" style="width:100%;height:300px;object-fit:contain;" />
+          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">Angle‑Aware Coverage Control</figcaption>
         </figure>
-        <p style="font-size: 14px; color: #4A4A4A; margin-top: 10px; text-align: justify;">
-          Drones capture images from diverse angles to enhance 3D reconstruction coverage.
+        <p style="font-size:14px;color:#4A4A4A;margin-top:10px;text-align:justify;">
+          Drones coordinate position and camera orientation (yaw/pitch/altitude) to realize multi‑view sampling over a 5‑D virtual field.
         </p>
       </div>
-
-      <!-- Real-Time Map Feedback with NeuralRecon Diagram -->
       <div class="column is-half has-text-centered">
         <figure>
-          <img src="./static/images/controller_scheme_short.png" alt="Real-Time Map Feedback from NeuralRecon" style="width:100%; height:300px; object-fit: contain;">
-          <figcaption style="font-size: 14px; font-weight: bold; margin-top: 10px;">Real-Time Map Feedback from NeuralRecon</figcaption>
+          <img src="./static/images/controller_scheme_short.png" alt="Online Map Feedback" style="width:100%;height:300px;object-fit:contain;" />
+          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">Online Map Feedback (NeuralRecon)</figcaption>
         </figure>
-        <p style="font-size: 14px; color: #4A4A4A; margin-top: 10px; text-align: justify;">
-          NeuralRecon processes images in real time, providing feedback that guides drone movement.
+        <p style="font-size:14px;color:#4A4A4A;margin-top:10px;text-align:justify;">
+          Mesh changes quantify under‑reconstructed regions and adapt the importance index; a QP controller enforces performance and safety via CBFs.
         </p>
       </div>
-      
     </div>
   </div>
 </section>
 
+<!-- Mesh comparison -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Single Title for all models -->
-    <h2 class="title is-3 has-text-centered">Comparison of Reconstructed Mesh</h2>
-    
+    <h2 class="title is-3 has-text-centered">Reconstruction Comparison</h2>
     <div class="columns is-centered has-text-centered">
-      
-      <!-- First 3D Model -->
       <div class="column">
         <div class="sketchfab-embed-wrapper">
-          <iframe title="Exported Mesh" frameborder="0" allowfullscreen mozallowfullscreen="true" 
-                  webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
-                  src="https://sketchfab.com/models/e15145058d574b4a920c7412fe79377b/embed?autospin=1&autostart=1&ui_theme=dark"
-                  width="100%" height="480">
-          </iframe>
-          <p style="font-size: 14px; font-weight: bold; margin: 10px 0; color: #4A4A4A;">Ground Truth</p>
+          <iframe title="Ground Truth" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/e15145058d574b4a920c7412fe79377b/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Ground Truth</p>
         </div>
       </div>
-
-      <!-- Second 3D Model -->
       <div class="column">
         <div class="sketchfab-embed-wrapper">
-          <iframe title="Neural_recon" frameborder="0" allowfullscreen mozallowfullscreen="true" 
-                  webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
-                  src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark"
-                  width="100%" height="480">
-          </iframe>
-          <p style="font-size: 14px; font-weight: bold; margin: 10px 0; color: #4A4A4A;">With Mesh Feedback</p>
+          <iframe title="With Online Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">With Online Feedback</p>
         </div>
       </div>
-
-      <!-- Third 3D Model -->
       <div class="column">
         <div class="sketchfab-embed-wrapper">
-          <iframe title="Mesh_60" frameborder="0" allowfullscreen mozallowfullscreen="true" 
-                  webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
-                  src="https://sketchfab.com/models/38d5d3971fcd4b4792e706ddb77726bb/embed?autospin=1&autostart=1&ui_theme=dark"
-                  width="100%" height="480">
-          </iframe>
-          <p style="font-size: 14px; font-weight: bold; margin: 10px 0; color: #4A4A4A;">Without Mesh Feedback</p>
+          <iframe title="Without Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/38d5d3971fcd4b4792e706ddb77726bb/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Without Feedback</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- <section class="section" id="BibTeX">
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{hanif2024realtime,
-  author = {Muhammad Hanif and Takumi Sumino and Kuniaki Uto and Daisuke Ichihashi and Kelvin Cheng and Takeshi Hatanaka},
-  title = {Impact of Real-time Map Feedback on Coordinated Image Sampling for 3D Reconstruction},
-  journal = {ECC},
-  year = {2024}
+<pre><code>@article{hanif2025coveragerecon,
+  title   = {Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback},
+  author  = {Hanif, Muhammad and Terunuma, Reiji and Sumino, Takumi and Cheng, Kelvin and Hatanaka, Takeshi},
+  journal = {IEEE Transactions on Control Systems Technology},
+  year    = {2025},
+  note    = {Manuscript}
 }</code></pre>
   </div>
-</section> -->
-
-<!-- <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="#">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-    </div>
-  </div>
-</footer> -->
+</section>
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <p>
-        This website is licensed under a 
+        This website is licensed under a
         <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
       </p>
       <p>
-        This webpage template is from <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a>. 
-        We sincerely thank <a href="https://keunhong.com" target="_blank" rel="noopener noreferrer">Keunhong Park</a> for developing and open-sourcing this template.
+        Template adapted from <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a>. Thanks to <a href="https://keunhong.com" target="_blank" rel="noopener noreferrer">Keunhong Park</a> for open-sourcing the template.
       </p>
     </div>
   </div>
