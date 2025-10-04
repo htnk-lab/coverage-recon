@@ -1,8 +1,11 @@
+![Coverage-Recon mesh art](static/images/cr_art_tp.png)
+
 # Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback
 
-This repository serves for the project webpage of Coverage-Recon paper, "Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback" by Muhammad Hanif, Reiji Terunuma, Takumi Sumino, Kelvin Cheng, and Takeshi Hatanaka.
+This repository hosts the project website for our paper **“Coverage-Recon: Coordinated Multi-Drone Image Sampling with Online Map Feedback.”**  
+Authors: Muhammad Hanif, Reiji Terunuma, Takumi Sumino, Kelvin Cheng, and Takeshi Hatanaka.
 
-You can view the website [here](https://htnk-lab.github.io/coverage-recon/).
+🔗 **Project page:** https://htnk-lab.github.io/coverage-recon/
 
 <!-- ## About the Project
 
