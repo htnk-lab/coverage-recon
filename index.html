@@ -30,6 +30,12 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    .tab-content { display: none; }
+    .tab-content.is-active { display: block; }
+    .subtabs .tabs { margin-top: 1rem; }
+  </style>
 </head>
 <body>
 
@@ -106,7 +112,7 @@
                alt="Coverage-Recon Animation"
                style="width:100%; border-radius:8px; border:4px solid #222;" />
           <figcaption style="font-size:14px; color:#4A4A4A; margin-top:10px; text-align:center;">
-            <strong>Coverage‑Recon</strong> enables autonomous multi-drone reconstruction through a closed feedback loop between image sampling and mapping. Drones use angle-aware coverage control with a QP-based controller to capture diverse viewpoints. Then, captured images by the drones are streamed and processed by <a href=\"https://zju3dv.github.io/neuralrecon/\" target="_blank" rel=\"noopener noreferrer\" style=\"color:#1CAAD9;font-weight:bold;\">NeuralRecon</a> to generate an evolving 3D mesh that guides drones to focus on under-reconstructed regions.
+            <strong>Coverage‑Recon</strong> enables autonomous multi-drone reconstruction through a closed feedback loop between image sampling and mapping. Drones use angle-aware coverage control with a QP-based controller to capture diverse viewpoints. Then, captured images by the drones are streamed and processed by <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a> to generate an evolving 3D mesh that guides drones to focus on under-reconstructed regions.
           </figcaption>
         </figure>
       </div>
@@ -130,75 +136,161 @@
   </div>
 </section>
 
-<!-- Hero video (simulation) -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="publication-video">
-          <iframe
-            src="https://www.youtube.com/embed/ZhDbBBvplhY?autoplay=0&loop=1&playlist=ZhDbBBvplhY"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="100%" height="450"></iframe>
-        </div>
-        <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
-          Real-time, feedback-driven coverage with online mesh updates from
-          <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a>.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Key concept illustrations -->
+<!-- Key concept illustrations (moved to appear right after Abstract) -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Key Concepts</h2>
     <div class="columns is-centered is-vcentered">
       <div class="column is-half has-text-centered">
         <figure>
-          <img src="./static/images/drone_virtual_field.png" alt="Angle-Aware Coverage Control" style="width:100%;height:300px;object-fit:contain;" />
-          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">Angle-Aware Coverage Control</figcaption>
+          <img src="./static/images/angle_aware_illustration.gif"
+            alt="Angle-Aware Coverage Control"
+            style="width:100%; height:auto; border:4px solid #000; border-radius:8px;" />
+          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">
+            Angle-Aware Coverage Control
+          </figcaption>
         </figure>
         <p style="font-size:14px;color:#4A4A4A;margin-top:10px;text-align:justify;">
-          Drones coordinate position and camera orientation (yaw/pitch/altitude) to realize multi-view sampling over a 5-D virtual field.
-        </p>
+          Drones actively control both position and camera orientation (yaw and pitch), forming a 5-D control input to scan a 5-D virtual field of viewpoints. Each location in this field has an importance index: initially high (<span style="color:#ff4d4d; font-weight:bold;">red</span>) when unobserved, and progressively decreasing toward low (<span style="color:#1e90ff; font-weight:bold;">blue</span>) as it is covered by the drone’s camera.
+        </p>        
       </div>
       <div class="column is-half has-text-centered">
         <figure>
-          <img src="./static/images/controller_scheme_short.png" alt="Online Map Feedback" style="width:100%;height:300px;object-fit:contain;" />
-          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">Online Map Feedback (NeuralRecon)</figcaption>
+          <img src="./static/images/online_map_feedback.gif"
+               alt="Online Map Feedback"
+               style="width:100%;height:300px;object-fit:contain; border:4px solid #000; border-radius:8px;" />
+          <figcaption style="font-size:14px;font-weight:bold;margin-top:10px;">
+            Online Map Feedback (NeuralRecon)
+          </figcaption>
         </figure>
         <p style="font-size:14px;color:#4A4A4A;margin-top:10px;text-align:justify;">
-          Mesh changes quantify under-reconstructed regions and adapt the importance index; a QP controller enforces performance and safety via CBFs.
-        </p>
+          Using the online 3D mesh generated by 
+          <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a>, 
+          we extract mesh changes over time to identify under-reconstructed regions. 
+          Locations with large mesh updates are treated as high-importance areas, and this information is used to update the importance index. 
+          The QP-based controller then guides drones to revisit these regions while ensuring performance and safety via CBFs.
+        </p>        
       </div>
     </div>
   </div>
 </section>
 
-<!-- Mesh comparison -->
+
+<!-- Tabs: Simulation & Experiments -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Reconstruction Comparison</h2>
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <div class="sketchfab-embed-wrapper">
-          <iframe title="Ground Truth" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/e15145058d574b4a920c7412fe79377b/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Ground Truth</p>
+    <div class="tabs is-centered is-boxed" id="top-tabs">
+      <ul>
+        <li class="is-active" data-target="#tab-sim"><a>Simulation</a></li>
+        <li data-target="#tab-exp"><a>Experiments</a></li>
+      </ul>
+    </div>
+
+    <!-- Simulation Tab Content -->
+    <div id="tab-sim" class="tab-content is-active">
+      <h2 class="title is-3 has-text-centered">Simulation</h2>
+
+      <!-- Subtabs inside Simulation: Single vs Multi Drone -->
+      <div class="subtabs">
+        <div class="tabs is-toggle is-centered">
+          <ul>
+            <li class="is-active" data-target="#tab-sim-single"><a>Single‑Drone</a></li>
+            <li data-target="#tab-sim-multi"><a>Multi‑Drone</a></li>
+          </ul>
+        </div>
+
+        <!-- Single-Drone content -->
+        <div id="tab-sim-single" class="tab-content is-active">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-video">
+                <iframe
+                  src="https://www.youtube.com/embed/ZhDbBBvplhY?autoplay=0&loop=1&playlist=ZhDbBBvplhY"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="100%" height="450"></iframe>
+              </div>
+              <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
+                Real-time, feedback-driven coverage with online mesh updates from
+                <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Reconstruction result (Single-Drone) -->
+          <div class="columns is-centered has-text-centered" style="margin-top:1rem;">
+            <div class="column is-10">
+              <h3 class="title is-4">Reconstruction Result (Single‑Drone)</h3>
+              <div class="sketchfab-embed-wrapper">
+                <!-- Use the model that best matches your single-drone sim result -->
+                <iframe title="Single-Drone Reconstruction" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking"
+                        src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark"
+                        width="100%" height="420"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-Drone content -->
+        <div id="tab-sim-multi" class="tab-content">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="publication-video">
+                <!-- TODO: Replace REPLACE_WITH_MULTI_DRONE_VIDEO_ID with your YouTube video ID -->
+                <iframe
+                  src="https://www.youtube.com/embed/REPLACE_WITH_MULTI_DRONE_VIDEO_ID?autoplay=0&loop=1&playlist=REPLACE_WITH_MULTI_DRONE_VIDEO_ID"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="100%" height="450"></iframe>
+              </div>
+              <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
+                Multi‑drone coordinated coverage with online feedback.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="column">
-        <div class="sketchfab-embed-wrapper">
-          <iframe title="With Online Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">With Online Feedback</p>
+    </div>
+
+    <!-- Experiments Tab Content -->
+    <div id="tab-exp" class="tab-content">
+      <h2 class="title is-3 has-text-centered">Experiments</h2>
+
+      <!-- Experiment video -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <iframe
+              src="https://www.youtube.com/embed/6YGn8SMiXKw?autoplay=0&loop=1&playlist=6YGn8SMiXKw"
+              frameborder="0" allow="autoplay; encrypted-media" allowfullscreen width="100%" height="450"></iframe>
+          </div>
+          <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
+            Real‑world indoor experiment with online mesh feedback.
+          </p>
         </div>
       </div>
-      <div class="column">
-        <div class="sketchfab-embed-wrapper">
-          <iframe title="Without Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/38d5d3971fcd4b4792e706ddb77726bb/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Without Feedback</p>
+
+      <!-- 3D Map Comparison -->
+      <div class="container" style="margin-top:1rem;">
+        <h3 class="title is-4 has-text-centered">3D Map Comparison</h3>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="sketchfab-embed-wrapper">
+              <iframe title="Ground Truth" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/e15145058d574b4a920c7412fe79377b/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Ground Truth</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="sketchfab-embed-wrapper">
+              <iframe title="With Online Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">With Online Feedback</p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="sketchfab-embed-wrapper">
+              <iframe title="Without Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/38d5d3971fcd4b4792e706ddb77726bb/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
+              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Without Feedback</p>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -230,6 +322,34 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Simple tabs controller (Bulma-like) for top-level tabs and subtabs
+function setupTabs(scope) {
+  const root = scope || document;
+  root.querySelectorAll('.tabs ul li').forEach(li => {
+    li.addEventListener('click', () => {
+      const parentTabs = li.closest('.tabs');
+      const container = parentTabs.parentElement; // section container holding tab-content siblings
+
+      // Deactivate all siblings in this group
+      parentTabs.querySelectorAll('li').forEach(sib => sib.classList.remove('is-active'));
+      container.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('is-active'));
+
+      // Activate current
+      li.classList.add('is-active');
+      const target = li.getAttribute('data-target');
+      if (target) {
+        const el = container.querySelector(target);
+        if (el) el.classList.add('is-active');
+      }
+    });
+  });
+}
+
+// Initialize both top tabs and nested subtabs
+setupTabs(document.getElementById('top-tabs')?.parentElement);
+</script>
 
 </body>
 </html>
