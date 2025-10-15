@@ -181,7 +181,7 @@
     <div class="tabs is-centered is-boxed" id="top-tabs">
       <ul>
         <li class="is-active" data-target="#tab-sim"><a>Simulation</a></li>
-        <li data-target="#tab-exp"><a>Experiments</a></li>
+        <li data-target="#tab-exp"><a>Experiment</a></li>
       </ul>
     </div>
 
@@ -206,40 +206,40 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XX9kR3zg-U4?si=jCAIKEHX70IF1Dc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
               <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
-                Real-time, feedback-driven coverage with online mesh updates from
-                <a href="https://zju3dv.github.io/neuralrecon/" target="_blank" rel="noopener noreferrer" style="color:#1CAAD9;font-weight:bold;">NeuralRecon</a>.
-              </p>
+                Simulation of Coverage-Recon using map feedback (3D grid method) with 1 drone.  
+                The video shows the scene, evolving importance index, mesh changes, and reconstructed map.
+              </p>              
             </div>
           </div>
 
           <!-- 3D Map Comparison (Single-Drone) -->
           <div class="container" style="margin-top:1.25rem;">
-            <h3 class="title is-4 has-text-centered">3D Map Comparison (Single-Drone)</h3>
+            <h3 class="title is-4 has-text-centered">3D Map Comparison</h3>
 
             <div class="columns is-multiline is-centered">
               <!-- Row 1 -->
               <div class="column is-one-quarter-desktop is-half-tablet">
-                <!-- Ground Truth -->
+                <!-- ground truth -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe title="Coverage-Recon Ground Truth Scene" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/0a3d61950d9a43f4b5a812c5caec818f/embed?autospin=1&autostart=1" width="100%" height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-ground-truth-scene-0a3d61950d9a43f4b5a812c5caec818f" target="_blank" rel="nofollow" style="font-weight:bold;color:#1CAAD9;">Ground Truth</a>
                   </p>
                 </div>
               </div>
 
               <div class="column is-one-quarter-desktop is-half-tablet">
-                <!-- Lawn-Mower -->
+                <!-- lawn-mower -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe title="Coverage-Recon Lawn Mower Method" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/4c1b5dfe6b78424e84eec869745b1ba3/embed?autospin=1&autostart=1" width="100%" height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-lawn-mower-method-4c1b5dfe6b78424e84eec869745b1ba3" target="_blank" rel="nofollow" style="font-weight:bold;color:#1CAAD9;">Lawn-Mower</a>
                   </p>
                 </div>
               </div>
 
               <div class="column is-one-quarter-desktop is-half-tablet">
-                <!-- PCC (replaces placeholder) -->
+                <!-- [Dan, et.al 2020] -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe
                     title="Coverage-Recon PCC Method"
@@ -255,19 +255,18 @@
                     src="https://sketchfab.com/models/cdd3e5fd69f643a7805855444d8b556e/embed?autospin=1&autostart=1"
                     width="100%"
                     height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-pcc-method-cdd3e5fd69f643a7805855444d8b556e"
                        target="_blank" rel="nofollow"
                        style="font-weight:bold; color:#1CAAD9;">
-                       Persistent Coverage Control (Dan et&nbsp;al., 2020)
+                       [Dan, et.al 2020]
                     </a>
                   </p>
                 </div>
               </div>
-              
 
               <div class="column is-one-quarter-desktop is-half-tablet">
-                <!-- Shimizu et al., 2021 (AACC Method) -->
+                <!-- [Shimizu,et.al 2021] -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe
                     title="Coverage-Recon AACC Method"
@@ -283,19 +282,19 @@
                     src="https://sketchfab.com/models/fcb6ac94ed62478c9ec8f9b1550b3817/embed?autospin=1&autostart=1"
                     width="100%"
                     height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-aacc-method-fcb6ac94ed62478c9ec8f9b1550b3817"
                        target="_blank" rel="nofollow"
                        style="font-weight:bold; color:#1CAAD9;">
-                       AACC (Shimizu et&nbsp;al., 2021)
+                       [Shimizu,et.al 2021]
                     </a>
                   </p>
                 </div>
               </div>
-              
 
+              <!-- Row 2 -->
               <div class="column is-one-quarter-desktop is-half-tablet">
-                <!-- ACRMC (Lu et al., 2024) -->
+                <!-- [Lu, et.al 2024] -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe
                     title="Coverage-Recon ACRMC Method"
@@ -311,16 +310,15 @@
                     src="https://sketchfab.com/models/006621286b4346a6a9fb7bc1c78ed23c/embed?autospin=1&autostart=1"
                     width="100%"
                     height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-acrmc-method-006621286b4346a6a9fb7bc1c78ed23c"
                        target="_blank" rel="nofollow"
                        style="font-weight:bold; color:#1CAAD9;">
-                       ACRMC (Lu et&nbsp;al., 2024)
+                       [Lu, et.al 2024]
                     </a>
                   </p>
                 </div>
               </div>
-              
 
               <div class="column is-one-quarter-desktop is-half-tablet">
                 <!-- Ours (No Map Feedback) -->
@@ -339,7 +337,7 @@
                     src="https://sketchfab.com/models/9f328153d0e543a59ffccf59b21e27e5/embed?autospin=1&autostart=1"
                     width="100%"
                     height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-no-map-feedback-1-drone-9f328153d0e543a59ffccf59b21e27e5"
                        target="_blank" rel="nofollow"
                        style="font-weight:bold; color:#1CAAD9;">
@@ -348,13 +346,12 @@
                   </p>
                 </div>
               </div>
-              
 
               <div class="column is-one-quarter-desktop is-half-tablet">
                 <!-- Ours (Map Feedback, 3D Grid) -->
                 <div class="sketchfab-embed-wrapper">
                   <iframe title="Coverage-Recon Map Feedback 3D Grid 1 Drone" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e65b06c995cb49ab912a926f8eb6f049/embed?autospin=1&autostart=1" width="100%" height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-map-feedback-3d-grid-1-drone-e65b06c995cb49ab912a926f8eb6f049" target="_blank" rel="nofollow" style="font-weight:bold;color:#1CAAD9;">Ours (Map Feedback, 3D Grid)</a>
                   </p>
                 </div>
@@ -377,7 +374,7 @@
                     src="https://sketchfab.com/models/591c3ccf092d4a7da60eb3706a64a401/embed?autospin=1&autostart=1"
                     width="100%"
                     height="260"></iframe>
-                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A;">
+                  <p style="font-size:13px; margin:6px 0; color:#4A4A4A; text-align:center;">
                     <a href="https://sketchfab.com/3d-models/coverage-recon-m3c2-591c3ccf092d4a7da60eb3706a64a401"
                        target="_blank" rel="nofollow"
                        style="font-weight:bold; color:#1CAAD9;">
@@ -386,7 +383,6 @@
                   </p>
                 </div>
               </div>
-              
 
             </div>
           </div>
@@ -400,17 +396,33 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/M1L07WQFRPI?si=6PIPzNavEJgqQXd0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
               <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
-                Multi-drone coordinated coverage with online feedback.
-              </p>
+                Simulation of Coverage-Recon using map feedback (3D grid method) with 4 drones.  
+                The video shows coordinated coverage of the scene, shared importance index updates, mesh changes, and the evolving 3D map.
+              </p>              
             </div>
           </div>
         </div>
+
+        <!-- J Comparison Image -->
+        <div class="columns is-centered has-text-centered" style="margin-top:1.5rem;">
+          <div class="column is-four-fifths">
+            <figure>
+              <img src="./static/images/j_multi_drone.png" alt="Objective J Comparison" style="width:100%; height:auto; border-radius:8px; border:4px solid #000;">
+              <figcaption style="font-size:14px; color:#4A4A4A; margin-top:10px; text-align:center;">
+                Comparison of the global objective <em>J</em> over time for different team sizes (1, 2, and 4 drones) using map feedback (3D Grid).  
+                Using more drones accelerates convergence of <em>J</em>, demonstrating faster mission completion.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
     <!-- Experiments Tab Content -->
     <div id="tab-exp" class="tab-content">
-      <h2 class="title is-3 has-text-centered">Experiments</h2>
+      <h2 class="title is-3 has-text-centered">Experiment</h2>
 
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -418,39 +430,81 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/vX7Z6vx1rc8?si=op9og6Lsoeczbhvr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
           <p style="font-size:14px;color:#4A4A4A;margin-top:15px;text-align:center;">
-            Real-world indoor experiment with online mesh feedback.
-          </p>
+            Real-world indoor experiment of Coverage-Recon using map feedback (3D grid method) with 1 drone.  
+            The video demonstrates the scene, evolving importance index, and reconstructed 3D map in practice.
+          </p>          
         </div>
       </div>
 
       <!-- 3D Map Comparison -->
       <div class="container" style="margin-top:1rem;">
-        <h3 class="title is-4 has-text-centered">3D Map Comparison</h3>
-        <div class="columns is-centered has-text-centered">
-          <div class="column">
-            <div class="sketchfab-embed-wrapper">
-              <iframe title="Ground Truth" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/e15145058d574b4a920c7412fe79377b/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Ground Truth</p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="sketchfab-embed-wrapper">
-              <iframe title="With Online Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/16d87e8fca054c99be51c660868db95a/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">With Online Feedback</p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="sketchfab-embed-wrapper">
-              <iframe title="Without Feedback" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/38d5d3971fcd4b4792e706ddb77726bb/embed?autospin=1&autostart=1&ui_theme=dark" width="100%" height="420"></iframe>
-              <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;">Without Feedback</p>
-            </div>
-          </div>
+      <h3 class="title is-4 has-text-centered">3D Map Comparison</h3>
+      <div class="columns is-centered has-text-centered">
+
+        <!-- Scene (Photo) -->
+        <div class="column">
+          <figure>
+            <img src="./static/images/sky_scene.png" alt="Scene Photo" style="width:100%; height:420px; object-fit:cover; border-radius:8px; border:4px solid #000;">
+          </figure>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;text-align:center;">
+            Scene (Photo)
+          </p>
         </div>
-      </div>
+
+        <!-- No Map Feedback -->
+        <div class="column">
+          <div class="sketchfab-embed-wrapper">
+            <iframe 
+              title="Coverage-Recon Experiment No Map Feedback"
+              frameborder="0" 
+              allowfullscreen 
+              mozallowfullscreen="true" 
+              webkitallowfullscreen="true" 
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking 
+              execution-while-out-of-viewport 
+              execution-while-not-rendered 
+              web-share
+              src="https://sketchfab.com/models/02c39a8730c14621b3366426c1e9463d/embed?autostart=1"
+              width="100%" height="420">
+            </iframe>
+          </div>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;text-align:center;">
+            Ours (No Map Feedback)
+          </p>
+        </div>
+
+        <!-- With Map Feedback -->
+        <div class="column">
+          <div class="sketchfab-embed-wrapper">
+            <iframe 
+              title="Coverage-Recon Exp with Map Feedback"
+              frameborder="0" 
+              allowfullscreen 
+              mozallowfullscreen="true" 
+              webkitallowfullscreen="true" 
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking 
+              execution-while-out-of-viewport 
+              execution-while-not-rendered 
+              web-share
+              src="https://sketchfab.com/models/c5cbfe38335d46c68d60c294577e9ae3/embed?autostart=1"
+              width="100%" height="420">
+            </iframe>
+          </div>
+          <p style="font-size:14px;font-weight:bold;margin:10px 0;color:#4A4A4A;text-align:center;">
+            Ours (With Map Feedback)
+          </p>
+        </div>
+
+  </div>
+</div>
+
 
     </div>
   </div>
 </section>
+
 
 
 <!-- BibTeX -->
